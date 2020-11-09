@@ -59,7 +59,7 @@ li {
   margin:0 auto;
 }
 
-@media screen and (min-width: 1200px) { 
+@media screen and (min-width: 1600px) { 
   .container{
     display: flex;
     justify-content: flex-start;
@@ -79,8 +79,9 @@ li {
     position: fixed;
   }
 
+
   .suggestions {
-    padding-left: 10%;
+    padding: 10%;
   }
 
   .filterCases {
