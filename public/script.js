@@ -1,4 +1,4 @@
-const api = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
+const api = 'https://data.princegeorgescountymd.gov/resource/wb4e-w4nf.json';
 
 const restArray = [];
 
@@ -7,10 +7,13 @@ fetch(api)
     .then(data => restArray.push(...data));
 
 
+
 function findMatches(wordToMatch, restArray) {
     return restArray.filter(place => {
         const regex = new RegExp(wordToMatch, 'gi');
-        return place.category.match(regex) || place.zip.match(regex)
+        if (place.clearance_code_inc_type.includes('AUTO')) {
+            return place.street_address.match(regex) || place.date.match(regex)
+        }
     });
 }
 const searchInput = document.querySelector('.UserInput');
@@ -25,15 +28,15 @@ function displayMatches() {
             <li class="filteredDisplay">
                 <ul>
                     <li>
-                        ${place.name}
+                        ${place.clearance_code_inc_type}
                     </li>
                     <li>
-                        ${place.category}
+                        ${place.date}
                     </li>
                     <address>
-                        ${place.address_line_1}<br>
-                        ${place.city}<br>
-                        ${place.zip}<br>
+                        ${place.street_number} ${place.street_address}<br>
+                        ${place.latitude}<br>
+                        ${place.longitude}<br>
                     </address>
                     <br>
                 </ul>
